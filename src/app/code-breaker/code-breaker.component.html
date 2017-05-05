@@ -1,0 +1,43 @@
+
+<h1>Code Breaker</h1>
+        <div class="row">
+          <p id="code" class="code" [ngClass]="answerClass">
+            <strong>{{ code }}</strong>
+          </p>
+        </div>
+
+        <div id="guessing-div" *ngIf='!showAnswer' class="row form-inline">
+          <input type="hidden" id="attempt"  />
+          <input type="hidden" id="answer" />
+          <input id="user-guess"  #userGuess class="form-control" type="text" />
+          <button class="btn btn-primary" (click)='guess(userGuess.value);' >Submit Guess</button>
+        </div>
+
+        <div id="replay-div" *ngIf='showAnswer'   class="row" >
+          <button class="btn btn-primary" (click)="replay()">Play again?</button>
+        </div>
+
+        <div class="row">
+          <p id="message" class="message">{{message}}</p>
+        </div>
+
+        <div class="row" id="results">
+          <div class="row">
+            <strong class="col-md-6">Guess</strong>
+            <strong class="col-md-6">Result</strong>
+          </div>
+          <div class="row" *ngFor="let result of results">
+            <span class="col-md-6">{{result.guess}}</span>
+            <div class="col-md-6" [innerHTML]="result.position" ></div>
+          </div>
+
+        </div>
+
+        <pre>
+ attempt: {{attempt}} 
+  answer:{{answer}}
+  userGuess:{{userGuess?.value}}
+  results:{{results|json}}
+</pre>
+
+        
